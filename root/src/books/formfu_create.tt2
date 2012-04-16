@@ -1,0 +1,5 @@
+[% META title = 'Create/Update Book' %]
+[% form %]
+
+<p><a href="[% c.uri_for(c.controller.action_for('list')) 
+        %]">Return to book list</a></p>

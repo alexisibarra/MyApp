@@ -1,0 +1,23 @@
+indicator: submit
+elements:
+    - type: Text
+      name: username
+      label: Username
+
+    - type: Password
+      name: password
+      label: Password
+      attributes:
+        title: Enter a rating between 1 and 5 here
+
+    - type: Submit
+      name: submit
+      value: Submit
+
+constraints:
+  - Required
+
+filter:
+  - TrimEdges
+  - HTMLEscape
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+[% META title = 'Book List' -%]
+<table>
+<tr><th>Title</th><th>Rating</th><th>Author(s)</th><th>Link</th></tr>
+[% FOREACH book IN books -%]
+	<tr>
+		<td>[% book.title %]</td>
+		<td>[% book.rating %]</td>
+		<td>
+			[% # Print count and author list using Result Class methods -%]
+			([% book.author_count | html %]) [% book.author_list | html %]
+		</td>
+		<td>
+			  [% # Add a link to delete a book %]
+			  <a href="[% c.uri_for(c.controller.action_for('delete'), [book.id]) %]">Delete</a>
+			<a href="[%
+				c.uri_for(c.controller.action_for('formfu_edit'), [book.id]) %]">Edit</a>
+		</td>
+	</tr>
+[% END -%]
+</table>
+<p>
+  <a href="[% c.uri_for('/login') %]">Login</a>
+  <a href="[% c.uri_for(c.controller.action_for('form_create')) %]">Admin Create</a>
+</p>
+
+
+<p>Hello [% c.user.username %], you have the following roles:</p>
+
+<ul>
+[% # Dump list of roles -%]
+[% FOR role = c.user.roles %]<li>[% role %]</li>[% END %]
+</ul>
+
+<p>
+[% IF c.check_user_roles('user') %]
+<a href="[% c.uri_for('/logout') %]">Logout</a>
+[% END %]
+
+[% IF c.check_user_roles('admin') %]
+<a href="[% c.uri_for(c.controller.action_for('form_create')) %]">Admin Create</a>
+[% END %]
+</p>
+
+<!--
+<p>
+	HTML::FormFu:
+	<a href="[% c.uri_for(c.controller.action_for('formfu_create')) %]">Create</a>
+</p>
+-->
+

@@ -1,0 +1,48 @@
+indicator: submit
+elements:
+    - type: Text
+      name: title
+      label: Title
+      attributes:
+        title: Enter a book title here
+
+      constraints:
+        - type: Length
+          min: 5
+          max: 40
+          message: Length must be between 5 and 40 characters
+
+    - type: Text
+      name: rating
+      label: Rating
+      attributes:
+        title: Enter a rating between 1 and 5 here
+    
+      constraints:
+        - type: Integer
+          message: "Required. Digits only, please"
+
+        - type: Range
+          min: 1
+          max: 5
+          message: "Must be between 1 and 5."
+
+    - type: Select
+      name: authors
+      label: Author
+      multiple: 1
+      size: 3
+
+      constraints:
+        - Integer
+
+    - type: Submit
+      name: submit
+      value: Submit
+constraints:
+  - Required
+
+filter:
+  - TrimEdges
+  - HTMLEscape
+
